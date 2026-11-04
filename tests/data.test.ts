@@ -3,6 +3,7 @@ import { createMockApi } from '../src/data/adapters/mock'
 import { createMockHelpApi } from '../src/data/adapters/mockHelp'
 import { parseToman, validateBank, validateMessage, validatePayment } from '../src/data/validation'
 import { normalizeSearch } from '../src/lib/text'
+import causesSeed from '../data/causes.json'
 
 describe('validation', () => {
   it('پیام کوتاه/بلند و موبایل نامعتبر رد می‌شود', () => {
@@ -65,9 +66,44 @@ describe('mock help', () => {
   it('داده‌محور: seed از JSON و bank خالی حذف می‌شود', async () => {
     const h = createMockHelpApi({ latencyMs: 0 })
     const list = await h.listCauses({})
-    expect(list.map((c) => c.id)).toEqual(['hosseiniyeh', 'jihadi', 'mosque', 'multi'])
-    expect(list[0].bank).toBeUndefined() // seed فعلاً خالی است
-    expect(list[3].accounts.map((a) => a.title)).toEqual(['عمرانی', 'فرهنگی', 'سایر'])
+
+    // ترتیب و مجموعه‌ی idها از خود seed خوانده می‌شود (با افزودن کارت جدید نمی‌شکند)
+    const seedIds = causesSeed.causes.map((c) => c.id)
+    expect(list.map((c) => c.id)).toEqual(seedIds)
+
+    const seedById = new Map(causesSeed.causes.map((c) => [c.id, c]))
+
+    const isBankEmpty = (bank?: Record<string, unknown>) =>
+      !bank || Object.values(bank).every((v) => !v || v === '')
+
+    const assertBank = (actual: any, seedBank: any, label: string) => {
+      if (isBankEmpty(seedBank)) {
+        expect(actual, `${label}: bank خالی باید حذف شود`).toBeUndefined()
+      } else {
+        expect(actual, `${label}: bank باید حفظ شود`).toBeDefined()
+        expect(actual?.cardNumber).toBe(seedBank.cardNumber)
+        expect(actual?.iban ?? '').toBe(seedBank.iban ?? '')
+        expect(actual?.ownerName ?? '').toBe(seedBank.ownerName ?? '')
+        expect(actual?.bankName ?? '').toBe(seedBank.bankName ?? '')
+      }
+    }
+
+    for (const cause of list) {
+      const seed = seedById.get(cause.id)
+      if (!seed) continue
+      assertBank(cause.bank, seed.bank, `cause:${cause.id}`)
+
+      // عنوان حساب‌ها هم داده‌محور بررسی می‌شود
+      if (seed.accounts?.length) {
+        expect(cause.accounts.map((a) => a.title)).toEqual(seed.accounts.map((a) => a.title))
+      }
+
+      for (const acc of cause.accounts ?? []) {
+        const seedAcc = (seed.accounts ?? []).find((a) => a.id === acc.id)
+        if (!seedAcc) continue
+        assertBank(acc.bank, seedAcc.bank, `cause:${cause.id}/account:${acc.id}`)
+      }
+    }
   })
   it('bank: نرمال‌سازی و اعتبارسنجی', () => {
     expect(validateBank({ bankName: ' ملی ', ownerName: 'الف', cardNumber: '۶۰۳۷ ۹۹۷۱ ۱۲۳۴ ۵۶۷۸', iban: 'ir ۰۶۲۰۱۰۰۰۰۰۰۰۱۲۳۴۵۶۷۸۹۰۱۲' })).toEqual({
