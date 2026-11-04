@@ -1,0 +1,41 @@
+{
+  "name": "haram-app",
+  "private": true,
+  "version": "0.9.0",
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "description": "Haram Razavi — Persian static web app (prayers, spiritual music, messages, charity cards)",
+  "engines": { "node": ">=22" },
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/build-content.mjs",
+    "dev": "vite",
+    "prebuild": "node scripts/build-content.mjs",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "typecheck": "tsc -b",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "content": "node scripts/build-content.mjs",
+    "content:check": "node scripts/build-content.mjs --check",
+    "causes:push": "node --env-file-if-exists=.env.local scripts/push-causes.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/vazirmatn": "^5.3.0",
+    "@tabler/icons-react": "^3.50.0",
+    "@tanstack/react-query": "^5.105.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-markdown": "^10.1.0",
+    "react-router-dom": "^7.18.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "oxlint": "^1.89.0",
+    "typescript": "~7.0.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  }
+}

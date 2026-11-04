@@ -1,0 +1,9 @@
+{
+  "name": "haram-payment-service",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "سرویس کوچک پرداخت (بدون وابستگی). روی سرور با IP ایران اجرا شود.",
+  "engines": { "node": ">=20" },
+  "scripts": { "start": "node index.mjs" }
+}

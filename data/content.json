@@ -1,0 +1,83 @@
+{
+  "allowedHosts": [
+    "file.erfan.ir",
+    "kashoob.com",
+    "music-fa.ir",
+    "dls.musics-fa.com"
+  ],
+  "prayers": [
+    {
+      "id": "ahd",
+      "title": "دعای عهد",
+      "audio": "https://file.erfan.ir/files/sound/mafatih/30_ahd_01.mp3?seed=10",
+      "categories": [
+        "other"
+      ]
+    },
+    {
+      "id": "tavassol",
+      "title": "دعای توسل",
+      "audio": "https://file.erfan.ir/files/sound/mafatih/24_tavassol_farahmand.mp3?seed=10",
+      "categories": [
+        "other"
+      ]
+    },
+    {
+      "id": "ziyarat-zahra",
+      "title": "زیارت حضرت زهرا (س)",
+      "audio": "https://file.erfan.ir/files/sound/mafatih/1204_ziarat%20-hazrate_fateme%20-3.mp3?seed=10",
+      "categories": [
+        "fatemiyeh"
+      ]
+    },
+    {
+      "id": "ziyarat-aminollah",
+      "title": "زیارت امین‌الله",
+      "audio": "https://file.erfan.ir/files/sound/mafatih/777_Fani-Ali-Ziyarat-Ameenullah.mp3?seed=10",
+      "categories": [
+        "other",
+        "qadr"
+      ]
+    }
+  ],
+  "music": [
+    {
+      "title": "ای صفای قلب زارم",
+      "artist": "",
+      "src": "https://mir1.kashoob.com/dl/audio/202508/enc_17559758466381176623310.mp3?name=%D8%A7%DB%8C%20%D8%B5%D9%81%D8%A7%DB%8C%20%D9%82%D9%84%D8%A8%20%D8%B2%D8%A7%D8%B1%D9%85",
+      "categories": [
+        "other"
+      ]
+    },
+    {
+      "title": "چادرت را بتکان روزی ما را بفرست",
+      "src": "https://dls.musics-fa.com/tagdl/downloads/Mohammad%20Hossein%20Pooyanfar%20-%20Chadorat%20Ra%20Betekan%20(128).mp3",
+      "categories": [
+        "fatemiyeh"
+      ],
+      "artist": "محمدحسین پویانفر"
+    }
+  ],
+  "videos": [
+    {
+      "title": "صلوات خاصه امام رضا (ع)",
+      "aparat": "ckn3o4e",
+      "featured": true
+    },
+    {
+      "title": "معجزه امام رضا صابر خراسانی",
+      "aparat": "beoc1bh"
+    }
+  ],
+  "banners": [
+    {
+      "kind": "campaign",
+      "title": "سخنرانی ایام فاطمیه (س)",
+      "placement": "home",
+      "weight": 2,
+      "sponsor": "حسینیه میروییه هماگ",
+      "text": "دلها در غم تو هستند حضرت مادر",
+      "id": "fatemieh-1405"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "_note": "کارت‌های همیاری. راهنما: data/README.md. فقط مقدارهای \"\" را پر کنید.",
+  "causes": [
+    {
+      "id": "hosseiniyeh",
+      "title": "حسینیه میروئیه هماگ بالا",
+      "bank": {
+        "bankName": "",
+        "ownerName": "",
+        "cardNumber": "",
+        "iban": ""
+      },
+      "accounts": [],
+      "online": false
+    },
+    {
+      "id": "jihadi",
+      "title": "گروه جهادی هماگ بالا",
+      "bank": {
+        "bankName": "",
+        "ownerName": "",
+        "cardNumber": "",
+        "iban": ""
+      },
+      "accounts": [],
+      "online": false
+    },
+    {
+      "id": "mosque",
+      "title": "مسجد صاحب الزمان (عج) میروئیه هماگ بالا",
+      "bank": {
+        "bankName": "",
+        "ownerName": "",
+        "cardNumber": "",
+        "iban": ""
+      },
+      "accounts": [],
+      "online": false
+    },
+    {
+      "id": "multi",
+      "title": "امامزاده شاه صفی الله (ع)",
+      "accounts": [
+        {
+          "id": "civil",
+          "title": "عمرانی",
+          "bank": {
+            "bankName": "",
+            "ownerName": "",
+            "cardNumber": "",
+            "iban": ""
+          },
+          "online": false
+        },
+        {
+          "id": "culture",
+          "title": "فرهنگی",
+          "bank": {
+            "bankName": "",
+            "ownerName": "",
+            "cardNumber": "",
+            "iban": ""
+          },
+          "online": false
+        },
+        {
+          "id": "other",
+          "title": "سایر",
+          "bank": {
+            "bankName": "",
+            "ownerName": "",
+            "cardNumber": "",
+            "iban": ""
+          },
+          "online": false
+        }
+      ]
+    }
+  ]
+}

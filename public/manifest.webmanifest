@@ -1,0 +1,17 @@
+{
+  "name": "حرم رضوی — امام رضا (ع) قربونت برم",
+  "short_name": "حرم رضوی",
+  "description": "زیارت‌نامه‌ها، نوای معنوی، درد و دل با امام رضا (ع) و همیاری",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#faf8f5",
+  "theme_color": "#00838f",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

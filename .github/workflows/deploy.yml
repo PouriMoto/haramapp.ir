@@ -1,0 +1,48 @@
+# استقرار روی GitHub Pages. هیچ متغیر یا رازی لازم نیست؛ همهٔ تنظیمات در data/site.json است.
+# یک‌بار: Settings → Pages → Source: GitHub Actions
+name: Deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: آدرس Apps Script در data/site.json پر شده؟
+        run: |
+          node -e "const s=require('./data/site.json'); if(!/^https:\/\/script\.google\.com\/.+\/exec$/.test(s.appsScriptUrl||'')){console.error('::error::data/site.json → appsScriptUrl خالی یا نادرست است (باید با https://script.google.com/ شروع و به /exec ختم شود)');process.exit(1)}"
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build   # محتوای data/ را هم می‌سازد؛ مسیر پایه و CNAME خودکار از data/site.json
+      - name: SPA fallback
+        run: cp dist/index.html dist/404.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

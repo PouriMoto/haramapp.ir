@@ -1,0 +1,23 @@
+:root {
+  /* پالت الهام‌گرفته از حرم */
+  --primary: #00838f;
+  --primary-light: #4fb3bf;
+  --primary-dark: #005662;
+  --secondary: #d4af37;
+  --secondary-light: #fdf5e6;
+
+  --bg: #faf8f5;
+  --surface: #ffffff;
+  --text: #2c3e50;
+  --text-muted: #6b7a7b;
+  --border: #f0f0f0;
+
+  --radius: 20px;
+  --nav-h: 70px;
+
+  --shadow-1: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-2: 0 4px 15px rgba(0, 131, 143, 0.15);
+  --shadow-fab: 0 8px 25px rgba(212, 175, 55, 0.5);
+
+  --font: 'Vazirmatn Variable', system-ui, sans-serif;
+}
