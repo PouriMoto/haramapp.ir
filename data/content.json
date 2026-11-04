@@ -3,7 +3,8 @@
     "file.erfan.ir",
     "kashoob.com",
     "music-fa.ir",
-    "dls.musics-fa.com"
+    "dls.musics-fa.com",
+    "dlw.webahang.ir"
   ],
   "prayers": [
     {
@@ -51,11 +52,12 @@
     },
     {
       "title": "چادرت را بتکان روزی ما را بفرست",
-      "src": "https://dls.musics-fa.com/tagdl/downloads/Mohammad%20Hossein%20Pooyanfar%20-%20Chadorat%20Ra%20Betekan%20(128).mp3",
+      "src": "https://dlw.webahang.ir/music/Track/poyanfar.chadorat.ra.betekan(128).mp3",
       "categories": [
         "fatemiyeh"
       ],
-      "artist": "محمدحسین پویانفر"
+      "artist": "محمدحسین پویانفر",
+      "cover": "https://webahang.ir/wp-content/uploads/2023/12/1poyanfar-chadorat-ra-betekan.webp"
     }
   ],
   "videos": [
@@ -76,9 +78,12 @@
       "title": "سخنرانی ایام فاطمیه (س)",
       "placement": "home",
       "weight": 2,
-      "sponsor": "حسینیه میروییه هماگ",
+      "sponsor": "حسینیه میروئیه هماگ",
       "text": "دلها در غم تو هستند حضرت مادر",
-      "id": "fatemieh-1405"
+      "id": "fatemieh-1405",
+      "image": "https://pikfree.ir/wp-content/uploads/edd/2026/09/fatemeh-zahra-martyrdom-banner-psd-Top.jpg",
+      "startsAt": "2026-11-04",
+      "endsAt": "2026-11-21"
     }
   ]
 }
