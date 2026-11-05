@@ -34,21 +34,35 @@ function serviceWorkerPlugin(): Plugin {
 }
 
 // data/site.json: تنظیمات ساده‌ی مالک (آدرس Apps Script، دامنه، تعداد صفحهٔ اصلی)
-const site = JSON.parse(readFileSync('data/site.json', 'utf8')) as { appsScriptUrl?: string; domain?: string; homeLimit?: number }
+const site = JSON.parse(readFileSync('data/site.json', 'utf8')) as {
+  appsScriptUrl?: string
+  domain?: string
+  homeLimit?: number
+}
+
 const domain = (site.domain ?? '').trim().toLowerCase()
-const repo = process.env.GITHUB_REPOSITORY?.split('/')[1]
-// مسیر پایه: دامنهٔ اختصاصی → «/»؛ GitHub Pages بدون دامنه → /<نام-ریپو>/؛ محلی → «/». VITE_BASE فقط برای جایگزینی دستی.
-const base = process.env.VITE_BASE ?? (domain || !repo ? '/' : `/${repo}/`)
 
 /** با پر بودن domain در data/site.json، فایل CNAME ساخته می‌شود (GitHub Pages). */
 function cnamePlugin(): Plugin {
-  return { name: 'haram-cname', apply: 'build', generateBundle() { if (domain) this.emitFile({ type: 'asset', fileName: 'CNAME', source: `${domain}\n` }) } }
+  return {
+    name: 'haram-cname',
+    apply: 'build',
+    generateBundle() {
+      if (domain) this.emitFile({ type: 'asset', fileName: 'CNAME', source: `${domain}\n` })
+    },
+  }
 }
 
-// VITE_BASE: مسیر پایه برای GitHub Pages (مثلاً /haram-app/). روی دامنه اختصاصی «/» بماند.
+// VITE_BASE فقط برای جایگزینی دستی (مثلاً پیش‌نمایش زیرمسیر). روی دامنه اختصاصی همیشه «/» است.
+const base = process.env.VITE_BASE ?? '/'
+
 export default defineConfig({
+  // base به‌صورت صریح «/» است تا روی دامنه اختصاصی (www.haramapp.ir) مسیرهای assetها درست باشند
   base,
   plugins: [react(), serviceWorkerPlugin(), cnamePlugin()],
   // با هر build عوض می‌شود؛ کش ذخیره‌شدهٔ نسخهٔ قبل را بی‌اعتبار می‌کند (ساختار داده ممکن است عوض شده باشد)
-  define: { __BUILD_ID__: JSON.stringify(Date.now().toString(36)), __SITE__: JSON.stringify(site) },
+  define: {
+    __BUILD_ID__: JSON.stringify(Date.now().toString(36)),
+    __SITE__: JSON.stringify(site),
+  },
 })
