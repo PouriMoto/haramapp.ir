@@ -45,29 +45,56 @@ describe('mock api', () => {
 })
 
 describe('mock help', () => {
-  it('۴ کارت اولیه و جستجو', async () => {
+  it('کارت‌های اولیه و جستجو', async () => {
     const h = createMockHelpApi({ latencyMs: 0 })
-    expect(await h.listCauses({})).toHaveLength(4)
-    expect(await h.listCauses({ q: 'جهادي' })).toHaveLength(1) // ی عربی
-    expect(await h.listCauses({ q: 'عمرانی' })).toHaveLength(1) // جستجو در نام حساب
+    expect(await h.listCauses({})).toHaveLength(causesSeed.causes.length)
+    expect(await h.listCauses({ q: 'جهادی' })).toHaveLength(1) // ی فارسی مطابق seed
+    expect(await h.listCauses({ q: 'عمرانی' })).toHaveLength(1)
     expect(await h.listCauses({ q: 'zzz' })).toHaveLength(0)
   })
+
   it('پرداخت، جمع کل و پرداخت‌های من', async () => {
     const h = createMockHelpApi({ latencyMs: 0 })
-    await h.startPayment({ causeId: 'jihadi', amountToman: 100000, clientId: 'dev-A' })
-    await h.startPayment({ causeId: 'multi', accountId: 'civil', amountToman: 50000, clientId: 'dev-B' })
-    await expect(h.startPayment({ causeId: 'multi', amountToman: 50000, clientId: 'dev-B' })).rejects.toThrow()
-    expect((await h.getHelpTotal()).totalToman).toBe(150000)
-    expect((await h.getCause('multi')).accounts.find((a) => a.id === 'civil')?.totalToman).toBe(50000)
+
+    // causeهایی که bank دارند (برای پرداخت معتبر لازم است)
+    const bankCauses = causesSeed.causes.filter((c) => c.bank?.cardNumber)
+    expect(bankCauses.length).toBeGreaterThanOrEqual(1)
+    const withBank = bankCauses[0]
+
+    // cause چندحسابه (اگر وجود داشته باشد)
+    const multi = causesSeed.causes.find((c) => (c.accounts?.length ?? 0) > 0)
+
+    // پرداخت اول به cause دارای bank
+    await h.startPayment({ causeId: withBank.id, amountToman: 100000, clientId: 'dev-A' })
+
+    // پرداخت دوم به اولین حساب multi (در صورت وجود)
+    if (multi) {
+      const acc = multi.accounts[0]
+      await h.startPayment({ causeId: multi.id, accountId: acc.id, amountToman: 50000, clientId: 'dev-B' })
+
+      // پرداخت تکراری بدون accountId باید رد شود
+      await expect(
+        h.startPayment({ causeId: multi.id, amountToman: 50000, clientId: 'dev-B' })
+      ).rejects.toThrow()
+    }
+
+    const expectedTotal = multi ? 150000 : 100000
+    expect((await h.getHelpTotal()).totalToman).toBe(expectedTotal)
+
+    if (multi) {
+      const acc = multi.accounts[0]
+      expect((await h.getCause(multi.id)).accounts.find((a) => a.id === acc.id)?.totalToman).toBe(50000)
+    }
+
     const mine = await h.listMyPayments('dev-A')
     expect(mine).toHaveLength(1)
     expect(mine[0]).not.toHaveProperty('clientId')
   })
+
   it('داده‌محور: seed از JSON و bank خالی حذف می‌شود', async () => {
     const h = createMockHelpApi({ latencyMs: 0 })
     const list = await h.listCauses({})
 
-    // ترتیب و مجموعه‌ی idها از خود seed خوانده می‌شود (با افزودن کارت جدید نمی‌شکند)
     const seedIds = causesSeed.causes.map((c) => c.id)
     expect(list.map((c) => c.id)).toEqual(seedIds)
 
@@ -93,7 +120,6 @@ describe('mock help', () => {
       if (!seed) continue
       assertBank(cause.bank, seed.bank, `cause:${cause.id}`)
 
-      // عنوان حساب‌ها هم داده‌محور بررسی می‌شود
       if (seed.accounts?.length) {
         expect(cause.accounts.map((a) => a.title)).toEqual(seed.accounts.map((a) => a.title))
       }
@@ -105,24 +131,45 @@ describe('mock help', () => {
       }
     }
   })
+
   it('bank: نرمال‌سازی و اعتبارسنجی', () => {
-    expect(validateBank({ bankName: ' ملی ', ownerName: 'الف', cardNumber: '۶۰۳۷ ۹۹۷۱ ۱۲۳۴ ۵۶۷۸', iban: 'ir ۰۶۲۰۱۰۰۰۰۰۰۰۱۲۳۴۵۶۷۸۹۰۱۲' })).toEqual({
-      bankName: 'ملی', ownerName: 'الف', cardNumber: '6037997112345678', iban: 'IR062010000000123456789012',
+    expect(
+      validateBank({
+        bankName: ' ملی ',
+        ownerName: 'الف',
+        cardNumber: '۶۰۳۷ ۹۹۷۱ ۱۲۳۴ ۵۶۷۸',
+        iban: 'ir ۰۶۲۰۱۰۰۰۰۰۰۰۱۲۳۴۵۶۷۸۹۰۱۲',
+      })
+    ).toEqual({
+      bankName: 'ملی',
+      ownerName: 'الف',
+      cardNumber: '6037997112345678',
+      iban: 'IR062010000000123456789012',
     })
     expect(validateBank({ bankName: '', ownerName: '', cardNumber: '', iban: '' })).toBeUndefined()
     expect(() => validateBank({ bankName: '', ownerName: '', cardNumber: '123', iban: '' })).toThrow()
     expect(() => validateBank({ bankName: '', ownerName: '', cardNumber: '', iban: 'IR12' })).toThrow()
   })
+
   it('افزودن کارت با bank', async () => {
     const h = createMockHelpApi({ latencyMs: 0 })
-    const c = await h.addCause({ adminToken: 't', title: 'ک', bank: { bankName: 'ملی', ownerName: 'ف', cardNumber: '6037997112345678', iban: '' } })
+    const c = await h.addCause({
+      adminToken: 't',
+      title: 'ک',
+      bank: { bankName: 'ملی', ownerName: 'ف', cardNumber: '6037997112345678', iban: '' },
+    })
     expect(c.bank?.cardNumber).toBe('6037997112345678')
   })
+
   it('افزودن کارت', async () => {
     const h = createMockHelpApi({ latencyMs: 0 })
-    const c = await h.addCause({ adminToken: 't', title: 'کتابخانه', accounts: [{ title: 'الف' }, { title: 'ب' }] })
+    const c = await h.addCause({
+      adminToken: 't',
+      title: 'کتابخانه',
+      accounts: [{ title: 'الف' }, { title: 'ب' }],
+    })
     expect(c.accounts).toHaveLength(2)
-    expect(await h.listCauses({})).toHaveLength(5)
+    expect(await h.listCauses({})).toHaveLength(causesSeed.causes.length + 1)
   })
 })
 
@@ -134,13 +181,20 @@ describe('mock help: کلید و upsert', () => {
   it('getConfig و online، و upsert با id', async () => {
     const h = createMockHelpApi({ latencyMs: 0 })
     expect(await h.getConfig()).toEqual({ paymentsEnabled: true })
+    // mock به‌صورت پیش‌فرض online را true می‌دهد (رفتار mock مستقل از seed)
     expect((await h.listCauses({}))[0].online).toBe(true)
   })
 })
 
 import { mergeCauses } from '../src/data/adapters/appsScript'
 describe('mergeCauses (ایستا + شیت)', () => {
-  const file = { version: 1 as const, causes: [{ id: 'a', title: 'الف', accounts: [] }, { id: 'm', title: 'چندحسابه', accounts: [{ id: 'x', title: 'ایکس' }] }] }
+  const file = {
+    version: 1 as const,
+    causes: [
+      { id: 'a', title: 'الف', accounts: [] },
+      { id: 'm', title: 'چندحسابه', accounts: [{ id: 'x', title: 'ایکس' }] },
+    ],
+  }
   it('ایستا مرجع عنوان؛ شیت فقط مبلغ و online؛ کارت فقط‌شیتی حفظ می‌شود', () => {
     const live = [
       { id: 'a', title: 'قدیمی', totalToman: 500, online: true, accounts: [] },
