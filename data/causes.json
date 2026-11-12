@@ -3,40 +3,30 @@
   "_note": "کارت‌های همیاری. راهنما: data/README.md. فقط مقدارهای \"\" را پر کنید.",
   "causes": [
     {
-      "id": "hosseiniyeh",
-      "title": "حسینیه میروئیه هماگ بالا",
+      "id": "hoseiniyeh-masjed-homag",
+      "title": "مسجد و حسینیه میروئیه هماگ بالا",
       "bank": {
         "bankName": "گردشگری",
         "ownerName": "حسینیه و مسجد میروئیه هماگ بالا",
-        "cardNumber": "5054161002746813",
-        "iban": "IR000000000000000000000000"
+        "cardNumber": "5054161002746513",
+        "iban": "IR270640176109910166242001"
       },
       "accounts": [],
-      "online": false
+      "online": false,
+      "description": "کمک به ساخت و ساز و بازسازی ابنیه و تهیه تجهیزات آشپزخانه و سایر موارد مرتبط با حسینیه"
     },
     {
-      "id": "jihadi",
+      "id": "jihadi-homag",
       "title": "گروه جهادی هماگ بالا",
       "bank": {
-        "bankName": "",
-        "ownerName": "",
-        "cardNumber": "",
-        "iban": ""
+        "bankName": "گردشگری",
+        "ownerName": "گروه جهادی آبادگران هماگ بالا",
+        "cardNumber": "5054161008213849",
+        "iban": "IR660640176199660166242001"
       },
       "accounts": [],
-      "online": false
-    },
-    {
-      "id": "mosque",
-      "title": "مسجد صاحب الزمان (عج) میروئیه هماگ بالا",
-      "bank": {
-        "bankName": "",
-        "ownerName": "",
-        "cardNumber": "",
-        "iban": ""
-      },
-      "accounts": [],
-      "online": false
+      "online": false,
+      "description": "گروه جهادی آبادگران هماگ بالا (رتبه نخست محرومیت زدایی در استان هرمزگان در سال 1401) در زمینه ساخت و ساز عمرانی مسجد و حسینیه و همچنین جمع آوری کمک های مردمی در جهت کمک به نیازمندان روستا تشکیل گردید."
     },
     {
       "id": "multi",
