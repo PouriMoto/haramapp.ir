@@ -8,6 +8,16 @@
   ],
   "prayers": [
     {
+      "title": "زیارت عاشورا",
+      "categories": [
+        "muharram",
+        "other"
+      ],
+      "pinned": true,
+      "id": "ashoura",
+      "audio": "https://file.erfan.ir/files/sound/mafatih/891_744_18.mp3?seed=10"
+    },
+    {
       "id": "ahd",
       "title": "دعای عهد",
       "audio": "https://file.erfan.ir/files/sound/mafatih/30_ahd_01.mp3?seed=10",
@@ -24,6 +34,39 @@
       ]
     },
     {
+      "id": "ziyarat-aminollah",
+      "title": "زیارت امین‌الله",
+      "audio": "https://file.erfan.ir/files/sound/mafatih/777_Fani-Ali-Ziyarat-Ameenullah.mp3?seed=10",
+      "categories": [
+        "other",
+        "qadr"
+      ]
+    },
+    {
+      "title": "دعای ندبه",
+      "categories": [
+        "other"
+      ],
+      "id": "nodbeh",
+      "audio": "https://file.erfan.ir/files/sound/mafatih/953_790_4.mp3?seed=10"
+    },
+    {
+      "id": "komeil",
+      "title": "دعای کمیل",
+      "categories": [
+        "other"
+      ],
+      "audio": "https://file.erfan.ir/files/sound/mafatih/1044_Komeil.Samavati_YasDL.com.mp3?seed=10"
+    },
+    {
+      "id": "alghame",
+      "title": "دعای علقمه",
+      "categories": [
+        "other"
+      ],
+      "audio": "https://file.erfan.ir/files/sound/mafatih/908_935_4.mp3?seed=10"
+    },
+    {
       "id": "ziyarat-zahra",
       "title": "زیارت حضرت زهرا (س)",
       "audio": "https://file.erfan.ir/files/sound/mafatih/1204_ziarat%20-hazrate_fateme%20-3.mp3?seed=10",
@@ -32,23 +75,48 @@
       ]
     },
     {
-      "id": "ziyarat-aminollah",
-      "title": "زیارت امین‌الله",
-      "audio": "https://file.erfan.ir/files/sound/mafatih/777_Fani-Ali-Ziyarat-Ameenullah.mp3?seed=10",
       "categories": [
         "other",
-        "qadr"
-      ]
+        "ramadan"
+      ],
+      "id": "yastashir",
+      "title": "دعای یستشیر",
+      "audio": "https://file.erfan.ir/files/sound/mafatih/1035_636965586794828532video%20(1).mp3?seed=10"
+    },
+    {
+      "id": "mashlool",
+      "title": "دعای مشلول",
+      "categories": [
+        "other"
+      ],
+      "audio": "https://file.erfan.ir/files/sound/mafatih/31_mashlool_farahmand.mp3?seed=10"
+    },
+    {
+      "title": "دعای سمات",
+      "categories": [
+        "other"
+      ],
+      "id": "samat",
+      "audio": "https://file.erfan.ir/files/sound/mafatih/316_162_2.mp3?seed=10"
+    },
+    {
+      "categories": [
+        "other"
+      ],
+      "id": "aal-yaseen",
+      "title": "زیارت آل یاسین",
+      "audio": "https://file.erfan.ir/files/sound/mafatih/1515_Fani-Ali-Aale-Yasin-Fa.mp3?seed=10"
     }
   ],
   "music": [
     {
       "title": "ای صفای قلب زارم",
-      "artist": "",
+      "artist": "حسین طاهری",
       "src": "https://mir1.kashoob.com/dl/audio/202508/enc_17559758466381176623310.mp3?name=%D8%A7%DB%8C%20%D8%B5%D9%81%D8%A7%DB%8C%20%D9%82%D9%84%D8%A8%20%D8%B2%D8%A7%D8%B1%D9%85",
       "categories": [
         "other"
-      ]
+      ],
+      "pinned": true
     },
     {
       "title": "چادرت را بتکان روزی ما را بفرست",
@@ -58,18 +126,74 @@
       ],
       "artist": "محمدحسین پویانفر",
       "cover": "https://webahang.ir/wp-content/uploads/2023/12/1poyanfar-chadorat-ra-betekan.webp"
+    },
+    {
+      "title": "انا لله و انا الیه راجعون کشته شد زهرا",
+      "src": "https://dls.musics-fa.com/song/alibz/2026/11/Reza%20Peyrovi%20-%20Koshte%20Shod%20Musics-Fa.mp3",
+      "categories": [
+        "fatemiyeh"
+      ],
+      "cover": "https://musics-fa.com/wp-content/uploads/2026/11/Reza-Peyrovi-Koshte-Shod-150x150.webp",
+      "artist": "رضا پیروی"
+    },
+    {
+      "title": "انا اعطیناک الکوثر رقیه",
+      "src": "https://dls.musics-fa.com/song/alibz/2026/11/Ehsan%20Lotfi%20-%20Kosar%20Musics-Fa.mp3",
+      "categories": [
+        "muharram"
+      ],
+      "cover": "https://musics-fa.com/wp-content/uploads/2026/11/Reza-Peyrovi-Koshte-Shod-150x150.webp",
+      "artist": "احسان لطفی"
+    },
+    {
+      "title": "الهی هیشکی داغ شاخ شمشادش نبینه",
+      "src": "https://dls.musics-fa.com/song/alibz/2026/06/Amin Ghadim - Daghe Shemshad Musics-Fa.mp3",
+      "categories": [
+        "muharram"
+      ],
+      "cover": "https://musics-fa.com/wp-content/uploads/2026/06/Amin-Ghadim-Daghe-Shemshad-Music-fa.com_-150x150.webp",
+      "artist": "امین قدم"
+    },
+    {
+      "title": "ننه زهرا زمین خوردم",
+      "src": "https://dls.musics-fa.com/song/alibz/dlswm/Hossein%20Sotoude%20-%20Nane%20Zahra%20(320).mp3",
+      "categories": [
+        "fatemiyeh"
+      ],
+      "cover": "https://musics-fa.com/wp-content/uploads/2024/12/Hossein-Sotoude-Nane-Zahra-Music-fa.com_-150x150.jpg",
+      "artist": "حسین ستوده"
     }
   ],
   "videos": [
     {
       "title": "صلوات خاصه امام رضا (ع)",
       "aparat": "ckn3o4e",
-      "featured": true
+      "featured": true,
+      "poster": "https://webahang.ir/wp-content/uploads/2026/08/reza-ansariyan-salavat-emam-reza.webp"
     },
     {
       "title": "معجزه امام رضا صابر خراسانی",
       "aparat": "beoc1bh",
       "poster": "https://cdn.yjcnews.ir/files/fa/news/1398/4/23/10229745_123.jpg"
+    },
+    {
+      "title": "روضه جانسوز حضرت زهرا (س) / حاج حیدر خمسه",
+      "aparat": "l68s4b7",
+      "poster": "https://rasekhoon.net/_files/images/media/khamse-40.jpg"
+    },
+    {
+      "title": "روضه طوفانی و سوزناک حاج حیدر خمسه",
+      "aparat": "xru7ij3"
+    },
+    {
+      "title": "روضه زنونه | حاج حیدر خمسه",
+      "aparat": "v16sugd",
+      "poster": "https://static1.jamaran.news/thumbnail/e33mPLQrOsgg/sqn6QpjH-sZHj2WgPZF7j-CCIX8DAn85N_XbcZvzzIIGkLt37uBTxfyeBsvyk_w3nc9RFwzonaps-QcAn6AMDfutmcLPE45dtTOVlRp1Lbh9oewT4BPKXExYVWkpKl2y/%D8%AD%DB%8C%D8%AF%D8%B1+%D8%AE%D9%85%D8%B3%D9%87.jpg"
+    },
+    {
+      "title": "روضه سوزناک فاطمیه | شهادت حضرت زهرا (س) | مهدی رسولی",
+      "aparat": "whj579d",
+      "poster": "https://ahaang.com/wp-content/uploads/2019/02/Mehdi-Rasoli-Ayame-Fatemieh-97.jpg"
     }
   ],
   "banners": [
