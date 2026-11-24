@@ -1,4 +1,4 @@
-import { IconChevronRight, IconMinus, IconShare3, IconPlayerPauseFilled, IconPlayerPlayFilled, IconPlus } from '@tabler/icons-react'
+import { IconChevronRight, IconMinus, IconShare3, IconPlayerPauseFilled, IconPlayerPlayFilled, IconPlus } from '../../components/icons'
 import { useMemo, type CSSProperties } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ListState } from '../../components/ListState'

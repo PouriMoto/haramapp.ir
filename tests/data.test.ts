@@ -3,7 +3,12 @@ import { createMockApi } from '../src/data/adapters/mock'
 import { createMockHelpApi } from '../src/data/adapters/mockHelp'
 import { parseToman, validateBank, validateMessage, validatePayment } from '../src/data/validation'
 import { normalizeSearch } from '../src/lib/text'
-import causesSeed from '../data/causes.json'
+// تست‌ها عمداً به data/causes.json (دادهٔ واقعی مالک) وابسته نیستند؛ فقط fixture.
+import causesSeed from './fixtures/causes.json'
+import type { CausesFile } from '../src/data/types'
+
+const SEED = causesSeed as unknown as CausesFile
+const mk = () => createMockHelpApi({ latencyMs: 0, seed: SEED })
 
 describe('validation', () => {
   it('پیام کوتاه/بلند و موبایل نامعتبر رد می‌شود', () => {
@@ -46,7 +51,7 @@ describe('mock api', () => {
 
 describe('mock help', () => {
   it('کارت‌های اولیه و جستجو', async () => {
-    const h = createMockHelpApi({ latencyMs: 0 })
+    const h = mk()
     expect(await h.listCauses({})).toHaveLength(causesSeed.causes.length)
     expect(await h.listCauses({ q: 'جهادی' })).toHaveLength(1) // ی فارسی مطابق seed
     expect(await h.listCauses({ q: 'عمرانی' })).toHaveLength(1)
@@ -54,7 +59,7 @@ describe('mock help', () => {
   })
 
   it('پرداخت، جمع کل و پرداخت‌های من', async () => {
-    const h = createMockHelpApi({ latencyMs: 0 })
+    const h = mk()
 
     // causeهایی که bank دارند (برای پرداخت معتبر لازم است)
     const bankCauses = causesSeed.causes.filter((c) => c.bank?.cardNumber)
@@ -92,7 +97,7 @@ describe('mock help', () => {
   })
 
   it('داده‌محور: seed از JSON و bank خالی حذف می‌شود', async () => {
-    const h = createMockHelpApi({ latencyMs: 0 })
+    const h = mk()
     const list = await h.listCauses({})
 
     const seedIds = causesSeed.causes.map((c) => c.id)
@@ -152,7 +157,7 @@ describe('mock help', () => {
   })
 
   it('افزودن کارت با bank', async () => {
-    const h = createMockHelpApi({ latencyMs: 0 })
+    const h = mk()
     const c = await h.addCause({
       adminToken: 't',
       title: 'ک',
@@ -162,7 +167,7 @@ describe('mock help', () => {
   })
 
   it('افزودن کارت', async () => {
-    const h = createMockHelpApi({ latencyMs: 0 })
+    const h = mk()
     const c = await h.addCause({
       adminToken: 't',
       title: 'کتابخانه',
@@ -179,7 +184,7 @@ describe('text', () => {
 
 describe('mock help: کلید و upsert', () => {
   it('getConfig و online، و upsert با id', async () => {
-    const h = createMockHelpApi({ latencyMs: 0 })
+    const h = mk()
     expect(await h.getConfig()).toEqual({ paymentsEnabled: true })
     // mock به‌صورت پیش‌فرض online را true می‌دهد (رفتار mock مستقل از seed)
     expect((await h.listCauses({}))[0].online).toBe(true)

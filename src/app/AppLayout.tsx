@@ -1,4 +1,4 @@
-import { IconHeart, IconHeartHandshake, IconHome, IconMessageCircle, IconMoon, IconPencil, IconSun } from '@tabler/icons-react'
+import { IconHeart, IconHeartHandshake, IconHome, IconMessageCircle, IconMoon, IconPencil, IconSun } from '../components/icons'
 import { useState } from 'react'
 import { InstallPrompt } from '../components/InstallPrompt'
 import { OfflineNotice } from '../components/OfflineNotice'

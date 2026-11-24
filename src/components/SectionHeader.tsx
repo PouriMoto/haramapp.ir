@@ -1,4 +1,4 @@
-import { IconChevronLeft } from '@tabler/icons-react'
+import { IconChevronLeft } from './icons'
 import { Link } from 'react-router-dom'
 
 export function SectionHeader({ title, moreTo, moreLabel }: { title: string; moreTo?: string; moreLabel?: string }) {

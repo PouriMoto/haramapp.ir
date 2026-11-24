@@ -1,4 +1,4 @@
-import { IconPlus } from '@tabler/icons-react'
+import { IconPlus } from '../../components/icons'
 import { useMemo, useState } from 'react'
 import { ListState } from '../../components/ListState'
 import { SearchBox } from '../../components/SearchBox'

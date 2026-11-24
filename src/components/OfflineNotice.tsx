@@ -1,4 +1,4 @@
-import { IconCloudOff } from '@tabler/icons-react'
+import { IconCloudOff } from './icons'
 import { useEffect, useRef } from 'react'
 import { useOnline } from '../lib/online'
 import { toast } from './toast'

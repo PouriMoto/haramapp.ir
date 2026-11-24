@@ -1,4 +1,4 @@
-import { IconCalendarEvent } from '@tabler/icons-react'
+import { IconCalendarEvent } from './icons'
 import { Link } from 'react-router-dom'
 import { currentOccasion } from '../content/occasion'
 

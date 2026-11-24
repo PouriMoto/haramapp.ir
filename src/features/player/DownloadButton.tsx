@@ -1,4 +1,4 @@
-import { IconDownload } from '@tabler/icons-react'
+import { IconDownload } from '../../components/icons'
 import { downloadAudio } from '../../lib/download'
 
 export function DownloadButton({ src, title }: { src: string; title: string }) {

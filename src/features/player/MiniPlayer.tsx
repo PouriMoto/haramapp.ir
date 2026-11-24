@@ -1,4 +1,4 @@
-import { IconMoon, IconPlayerPauseFilled, IconPlayerPlayFilled, IconPlayerTrackNext, IconPlayerTrackPrev, IconX } from '@tabler/icons-react'
+import { IconMoon, IconPlayerPauseFilled, IconPlayerPlayFilled, IconPlayerTrackNext, IconPlayerTrackPrev, IconX } from '../../components/icons'
 import { useEffect, useState } from 'react'
 import { toast } from '../../components/toast'
 import { formatTime } from '../../lib/time'

@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "causes": [
+    {
+      "id": "fx-hoseiniyeh",
+      "title": "حسینیهٔ نمونه",
+      "description": "کارت آزمایشی با بانک",
+      "bank": { "bankName": "ملی", "ownerName": "صاحب نمونه", "cardNumber": "6037997112345678", "iban": "IR062010000000123456789012" },
+      "accounts": [],
+      "online": false
+    },
+    {
+      "id": "fx-jihadi",
+      "title": "گروه جهادی نمونه",
+      "description": "کارت آزمایشی دوم",
+      "bank": { "bankName": "ملی", "ownerName": "گروه نمونه", "cardNumber": "6037991111111111", "iban": "" },
+      "accounts": [],
+      "online": false
+    },
+    {
+      "id": "fx-multi",
+      "title": "امامزادهٔ نمونه",
+      "accounts": [
+        { "id": "civil", "title": "عمرانی", "bank": { "bankName": "", "ownerName": "", "cardNumber": "", "iban": "" }, "online": false },
+        { "id": "culture", "title": "فرهنگی", "bank": { "bankName": "", "ownerName": "", "cardNumber": "", "iban": "" }, "online": false }
+      ],
+      "online": false
+    }
+  ]
+}

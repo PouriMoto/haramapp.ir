@@ -1,4 +1,4 @@
-import { IconBook2, IconPlayerPauseFilled, IconPlayerPlayFilled } from '@tabler/icons-react'
+import { IconBook2, IconPlayerPauseFilled, IconPlayerPlayFilled } from '../../components/icons'
 import { memo } from 'react'
 import { Link } from 'react-router-dom'
 import type { Prayer } from '../../content/types'

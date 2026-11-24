@@ -1,4 +1,4 @@
-import { IconCheck, IconCopy } from '@tabler/icons-react'
+import { IconCheck, IconCopy } from '../../components/icons'
 import { useEffect, useRef, useState } from 'react'
 import type { BankInfo } from '../../data/types'
 import { toast } from '../../components/toast'

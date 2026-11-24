@@ -1,4 +1,4 @@
-import { IconAlertTriangle, IconCircleCheck, IconInfoCircle } from '@tabler/icons-react'
+import { IconAlertTriangle, IconCircleCheck, IconInfoCircle } from './icons'
 import { useToast } from './toast'
 
 const ICON = { ok: IconCircleCheck, warn: IconAlertTriangle, info: IconInfoCircle }

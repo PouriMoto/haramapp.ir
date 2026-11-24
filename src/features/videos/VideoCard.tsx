@@ -1,4 +1,4 @@
-import { IconVideoOff, IconExternalLink, IconPlayerPlayFilled } from '@tabler/icons-react'
+import { IconVideoOff, IconExternalLink, IconPlayerPlayFilled } from '../../components/icons'
 import { memo, useState } from 'react'
 import { resolveMedia } from '../../content/hooks'
 import type { VideoItem } from '../../content/types'

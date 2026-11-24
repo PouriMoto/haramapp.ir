@@ -1,4 +1,4 @@
-import { IconChevronRight } from '@tabler/icons-react'
+import { IconChevronRight } from '../../components/icons'
 import { useState, type FormEvent } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ListState } from '../../components/ListState'

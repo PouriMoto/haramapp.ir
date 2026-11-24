@@ -1,4 +1,4 @@
-import { IconDownload, IconX } from '@tabler/icons-react'
+import { IconDownload, IconX } from './icons'
 import { dismissInstall, runInstall, useInstallMode } from '../pwa/install'
 
 /** از همان بازدید اول نشان داده می‌شود؛ «بعداً» ۱۴ روز مخفی‌اش می‌کند. بدون محاسبهٔ تعداد بازدید. */

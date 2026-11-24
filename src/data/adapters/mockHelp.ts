@@ -28,9 +28,10 @@ function loadSeed(file: CausesFile): Stored[] {
   }))
 }
 
-export function createMockHelpApi(opts: { latencyMs?: number } = {}): HelpApi {
+/** seed: فایل کارت‌ها (پیش‌فرض data/causes.json). تست‌ها fixture خودشان را می‌دهند تا ویرایش دادهٔ مالک تست را نشکند. */
+export function createMockHelpApi(opts: { latencyMs?: number; seed?: CausesFile } = {}): HelpApi {
   const wait = () => delay(opts.latencyMs ?? 120)
-  const causes: Stored[] = loadSeed(seedFile as CausesFile)
+  const causes: Stored[] = loadSeed(opts.seed ?? (seedFile as CausesFile))
   const payments: StoredPayment[] = []
   let seq = 0
 

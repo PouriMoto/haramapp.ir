@@ -1,4 +1,4 @@
-import { IconAlertCircle, IconCheck } from '@tabler/icons-react'
+import { IconAlertCircle, IconCheck } from '../../components/icons'
 import { Link, useSearchParams } from 'react-router-dom'
 
 /** بازگشت از درگاه: `/help/result?status=ok|fail&id=...` — وضعیت نهایی را سرور تعیین می‌کند؛ این صفحه فقط پیام می‌دهد. */

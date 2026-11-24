@@ -1,4 +1,4 @@
-import { IconChevronLeft, IconHeartHandshake } from '@tabler/icons-react'
+import { IconChevronLeft, IconHeartHandshake } from '../../components/icons'
 import { Link } from 'react-router-dom'
 import type { Cause } from '../../data/types'
 import { formatToman } from '../../lib/text'

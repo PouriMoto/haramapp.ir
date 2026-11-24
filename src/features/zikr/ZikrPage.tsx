@@ -1,4 +1,4 @@
-import { IconRotate } from '@tabler/icons-react'
+import { IconRotate } from '../../components/icons'
 import { useState } from 'react'
 import { toast } from '../../components/toast'
 import { readJson, writeJson } from '../../lib/storage'

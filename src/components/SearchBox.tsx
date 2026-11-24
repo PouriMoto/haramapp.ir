@@ -1,4 +1,4 @@
-import { IconSearch } from '@tabler/icons-react'
+import { IconSearch } from './icons'
 
 export function SearchBox({ value, onChange, placeholder }: { value: string; onChange(v: string): void; placeholder: string }) {
   return (

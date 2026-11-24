@@ -53,11 +53,26 @@ function cnamePlugin(): Plugin {
   }
 }
 
-// VITE_BASE فقط برای جایگزینی دستی (مثلاً پیش‌نمایش زیرمسیر). روی دامنه اختصاصی همیشه «/» است.
-const base = process.env.VITE_BASE ?? '/'
+/**
+ * مسیر پایهٔ سایت (base):
+ *  1) VITE_BASE اگر صریحاً داده شود (فقط جایگزینی دستی برای پیش‌نمایش)
+ *  2) domain در data/site.json پر است → «/» (دامنهٔ اختصاصی همیشه از ریشه سرو می‌شود)
+ *  3) داخل GitHub Actions بدون دامنه → «/<نام-ریپو>/» (آدرس USER.github.io/REPO/)
+ *  4) غیر این‌ها (dev محلی) → «/»
+ * علت باگ قبلی: workflow مقدار VITE_BASE=/haramapp.ir/ را اجبار می‌کرد و روی دامنهٔ اختصاصی assetها ۴۰۴ می‌شدند.
+ */
+export function resolveBase(env: NodeJS.ProcessEnv, customDomain: string): string {
+  const norm = (b: string) => `/${b.replace(/^\/+|\/+$/g, '')}/`.replace(/^\/\/$/, '/')
+  if (env.VITE_BASE?.trim()) return norm(env.VITE_BASE.trim())
+  if (customDomain) return '/'
+  const repo = (env.GITHUB_REPOSITORY ?? '').split('/')[1] ?? ''
+  if (env.GITHUB_ACTIONS && repo && !repo.toLowerCase().endsWith('.github.io')) return norm(repo)
+  return '/'
+}
+
+const base = resolveBase(process.env, domain)
 
 export default defineConfig({
-  // base به‌صورت صریح «/» است تا روی دامنه اختصاصی (www.haramapp.ir) مسیرهای assetها درست باشند
   base,
   plugins: [react(), serviceWorkerPlugin(), cnamePlugin()],
   // با هر build عوض می‌شود؛ کش ذخیره‌شدهٔ نسخهٔ قبل را بی‌اعتبار می‌کند (ساختار داده ممکن است عوض شده باشد)

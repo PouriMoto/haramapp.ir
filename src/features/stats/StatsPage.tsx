@@ -1,4 +1,4 @@
-import { IconHeartFilled } from '@tabler/icons-react'
+import { IconHeartFilled } from '../../components/icons'
 import { Link } from 'react-router-dom'
 import { useSalavatCounter } from '../../data/hooks/useStats'
 

@@ -1,4 +1,4 @@
-import { IconX } from '@tabler/icons-react'
+import { IconX } from './icons'
 import { useEffect, useId, useRef, type ReactNode } from 'react'
 
 /** bottom sheet روی <dialog> بومی: focus trap، Esc و backdrop رایگان */

@@ -1,4 +1,4 @@
-import { IconHeart, IconHeartFilled } from '@tabler/icons-react'
+import { IconHeart, IconHeartFilled } from '../../components/icons'
 import { toggleFavorite, useFavorites } from './store'
 
 export function FavButton({ id, title }: { id: string; title: string }) {

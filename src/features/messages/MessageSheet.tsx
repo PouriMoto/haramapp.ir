@@ -1,4 +1,4 @@
-import { IconCheck } from '@tabler/icons-react'
+import { IconCheck } from '../../components/icons'
 import { useEffect, useId, useState, type FormEvent } from 'react'
 import { Sheet } from '../../components/Sheet'
 import { ApiError, ValidationError } from '../../data/errors'

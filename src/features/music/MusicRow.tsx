@@ -1,4 +1,4 @@
-import { IconMusic, IconPlayerPauseFilled, IconPlayerPlayFilled } from '@tabler/icons-react'
+import { IconMusic, IconPlayerPauseFilled, IconPlayerPlayFilled } from '../../components/icons'
 import { memo } from 'react'
 import type { Music } from '../../content/types'
 import { DownloadButton } from '../player/DownloadButton'
